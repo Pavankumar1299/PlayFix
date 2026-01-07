@@ -1,0 +1,13 @@
+name: Run Tests
+on: [push] # Run on every push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm install
+      - run: npm test # Make sure your project has a test script!

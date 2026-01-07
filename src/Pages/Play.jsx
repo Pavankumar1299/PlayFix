@@ -376,6 +376,7 @@ function Play() {
                 alt={movieDetails.title || "Movie Poster"}
               />
             </div>
+            </div>
           </section>
 
           {/* Similar movies section */}
