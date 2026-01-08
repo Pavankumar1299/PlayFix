@@ -28,8 +28,14 @@ pipeline {
         stage('Deploy to EC2') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'ec2-ssh-key', keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER')]) {
+                    
+                    // --- THE FIX STARTS HERE ---
+                    // Windows permission fix: This command strips all "extra" users from the key file
+                    // and grants access ONLY to the user running Jenkins. This satisfies OpenSSH.
+                    bat 'icacls "%SSH_KEY%" /inheritance:r /grant:r "%USERNAME%":F'
+                    // ---------------------------
+
                     sh """
-                        # We added QUOTES around "$SSH_KEY" to fix the path error
                         ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" $SSH_USER@44.222.251.160 '
                             docker pull ${DOCKER_IMAGE}:latest
                             docker stop react-app || true
