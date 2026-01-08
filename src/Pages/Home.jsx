@@ -24,7 +24,7 @@ function Home() {
   const [watchedMovies, setWatchedMovies] = useState([]);
 
   useEffect(() => {
-    getDoc(doc(db, "WatchedMovies", User.uid)).then((result) => {
+    getDoc(doc(db, "WatchedMoviespk", User.uid)).then((result) => {
       if (result.exists()) {
         const mv = result.data();
         setWatchedMovies(mv.movies);
