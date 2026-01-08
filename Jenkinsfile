@@ -27,10 +27,10 @@ pipeline {
 
         stage('Deploy to EC2') {
             steps {
-                // This method extracts the key file directly. No ssh-agent needed!
                 withCredentials([sshUserPrivateKey(credentialsId: 'ec2-ssh-key', keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER')]) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no -i $SSH_KEY $SSH_USER@44.222.251.160 '
+                        # We added QUOTES around "$SSH_KEY" to fix the path error
+                        ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" $SSH_USER@44.222.251.160 '
                             docker pull ${DOCKER_IMAGE}:latest
                             docker stop react-app || true
                             docker rm react-app || true
