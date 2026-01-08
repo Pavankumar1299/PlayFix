@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "your-dockerhub-username/react-app"
+        DOCKER_IMAGE = "abhishekshgit/react-app"
         // IP address comes from Terraform output
-        DEPLOY_SERVER = "ubuntu@<YOUR_EC2_IP_ADDRESS>" 
+        DEPLOY_SERVER = "ubuntu@44.222.251.160" 
     }
 
     stages {
