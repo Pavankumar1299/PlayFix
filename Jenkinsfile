@@ -6,7 +6,7 @@ pipeline {
         // IP address comes from Terraform output
         DEPLOY_SERVER = "ubuntu@44.222.251.160" 
     }
-
+y
     stages {
         stage('Build Docker Image') {
             steps {
