@@ -9,5 +9,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm install
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps  <-- ADD THIS FLAG
       - run: npm test # Make sure your project has a test script!
