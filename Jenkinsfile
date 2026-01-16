@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "pavankumargit/react-app"
         // IP address comes from Terraform output
-        DEPLOY_SERVER = "ubuntu@44.195.42.244" 
+        DEPLOY_SERVER = "ubuntu@44.203.14.153" 
     }
 
     stages {
@@ -34,7 +34,7 @@ pipeline {
                     bat 'icacls "%SSH_KEY%" /inheritance:r /grant:r SYSTEM:F'
 
                     sh """
-                        ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" $SSH_USER@44.195.42.244 '
+                        ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" $SSH_USER@44.203.14.153 '
                             docker pull ${DOCKER_IMAGE}:latest
                             docker stop react-app || true
                             docker rm react-app || true

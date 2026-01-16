@@ -46,7 +46,7 @@ function Home() {
           ></RowPost>
         ) : null}
         <RowPost
-          title="NetFlix Originals"
+          title="NetFlix Originals pk at"
           islarge
           url={originals}
           key={originals}
