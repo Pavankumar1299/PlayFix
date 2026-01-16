@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "pavankumargit/react-app"
         // IP address comes from Terraform output
-        DEPLOY_SERVER = "ubuntu@44.203.14.153" 
+        DEPLOY_SERVER = "ubuntu@98.84.36.90" 
     }
 
     stages {
@@ -31,10 +31,11 @@ pipeline {
                     
                     // FIXED LINE: We use "SYSTEM" instead of "%USERNAME%"
                     // This works because Jenkins is running as the System Service
-                    bat 'icacls "%SSH_KEY%" /inheritance:r /grant:r SYSTEM:F'
+                    // bat 'icacls "%SSH_KEY%" /inheritance:r /grant:r SYSTEM:F'
+                    sh 'chmod 600 "$SSH_KEY"'
 
                     sh """
-                        ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" $SSH_USER@44.203.14.153 '
+                        ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" $SSH_USER@98.84.36.90 '
                             docker pull ${DOCKER_IMAGE}:latest
                             docker stop react-app || true
                             docker rm react-app || true
