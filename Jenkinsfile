@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "abhishekshgit/react-app"
+        DOCKER_IMAGE = "pavankumargit/react-app"
         // IP address comes from Terraform output
         DEPLOY_SERVER = "ubuntu@44.195.42.244" 
     }
